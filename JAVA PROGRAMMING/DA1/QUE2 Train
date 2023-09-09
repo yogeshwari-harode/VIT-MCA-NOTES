@@ -1,0 +1,92 @@
+import java.util.Scanner;
+
+class arrTrain {
+    int id;
+    String source;
+    String destination;
+    double distance;
+    double fare; 
+    Scanner scn = new Scanner(System.in);
+    
+    void input(){
+    System.out.print("Enter ID :");
+    id = scn.nextInt();
+    scn.nextLine(); // Consume the newline character
+    System.out.print("Enter Source :");
+    source = scn.nextLine();
+    System.out.print("Enter Destination :");
+    destination = scn.nextLine();
+    System.out.print("Enter Distance :");
+    distance = scn.nextDouble();
+    System.out.print("Enter fare :");
+    fare = scn.nextDouble();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+}
+
+    
+    
+    void display(){
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("Train details");
+        System.out.println("ID :" + id);    
+        System.out.println("Source :" + source);
+        System.out.println("Destination :" + destination);
+        System.out.println("Distance :" + distance);
+        System.out.println("Fare :" + fare);
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~");
+    }
+    
+    
+    static void compare(arrTrain []obj){
+        
+        double low = obj[0].fare;
+        double high = obj[0].distance;
+        int t1=0;
+        int t2=0;
+    
+        for(int i = 1; i < obj.length; i++){
+            if(obj[i].fare<low){
+            low = obj[i].fare;
+            t1=i;
+            }
+        }
+        
+        for(int i = 1; i < obj.length; i++){
+            if(obj[i].distance>high){
+            high = obj[i].distance;
+            t2=i;
+            }
+        }
+        
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println("The highest distance :" + high);
+    System.out.println("The lowest fare :" + low);
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println("THE HIGHEST DISTANCE DETAILS");
+    obj[t2].display();
+    System.out.println("THE LOWEST FARE DETAILS");
+    obj[t1].display();
+    }
+}
+
+
+public class TrainDemo{
+    public static void main(String []args){
+        Scanner scn = new Scanner(System.in);
+        int n;
+        System.out.print("Enter number of train:");
+        n = scn.nextInt();
+        
+        arrTrain[] trains = new arrTrain[n];
+        
+        for(int i = 0; i < n ; i++){
+            trains[i] = new arrTrain();
+            trains[i].input();
+        }
+        arrTrain.compare(trains);   
+    }
+}
+
+
+
+
