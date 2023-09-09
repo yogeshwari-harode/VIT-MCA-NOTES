@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+class mobUser {
+    
+    String name;
+    long mobNum;
+    Scanner scn = new Scanner(System.in);
+    
+    void input() {
+        System.out.print("Enter user name: ");
+        name = scn.nextLine();
+        System.out.print("Enter Mobile Number: ");
+        mobNum = scn.nextLong();
+    }
+    
+    String checkCommonChar(mobUser user) {
+        int minLength = Math.min(user.name.length(), this.name.length());
+        String commonChar = "";
+        
+        for (int i = 0; i < minLength; i++) {
+            if (user.name.charAt(i) == this.name.charAt(i)) {
+                commonChar=commonChar+user.name.charAt(i);
+            } else {
+                break;
+            }
+        }
+        
+        return commonChar.toString();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        mobUser user1 = new mobUser();
+        mobUser user2 = new mobUser();
+        user1.input();
+        user2.input();
+        
+        String commonChar = user1.checkCommonChar(user2);
+        if (!commonChar.isEmpty()) {
+            System.out.println("Common Characters in Names: " + commonChar);
+        } else {
+            System.out.println("No common characters found in Names.");
+        }
+    }
+}
