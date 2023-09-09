@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+class checkReg{
+    Scanner scn=new Scanner(System.in);
+    String regNum;
+    void input(){
+        System.out.print("Enter your Registration Number : ");
+        regNum=scn.nextLine();
+    }
+    
+    void check(){
+        if(regNum.length()!=9)
+        {
+            System.out.println("Registration Number must have 9 digits.");
+        }
+       else if (
+            Character.isDigit(regNum.charAt(0)) &&
+            Character.isDigit(regNum.charAt(1)) &&
+            Character.isLetter(regNum.charAt(2)) &&
+            Character.isLetter(regNum.charAt(3)) &&
+            Character.isLetter(regNum.charAt(4)) &&
+            Character.isDigit(regNum.charAt(5)) &&
+            Character.isDigit(regNum.charAt(6)) &&
+            Character.isDigit(regNum.charAt(7)) &&
+            Character.isDigit(regNum.charAt(8))
+            )
+        {
+            System.out.println("Registration number is in correct format.");    
+        }
+        else{
+            System.out.println("Registration Number is in wrong format.");
+        }
+    }
+}
+
+public class Main{
+    public static void main(String[]args){
+        checkReg reg=new checkReg();
+        reg.input();
+        reg.check();
+    }
+}
