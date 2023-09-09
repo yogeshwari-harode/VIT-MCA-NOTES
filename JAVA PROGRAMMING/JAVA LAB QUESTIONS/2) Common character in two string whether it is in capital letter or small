@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+class mobUser {
+    
+    String name;
+    long mobNum;
+    Scanner scn = new Scanner(System.in);
+    
+    void input() {
+        System.out.print("Enter user name: ");
+        name = scn.nextLine().toLowerCase(); // Convert input to lowercase
+        System.out.print("Enter Mobile Number: ");
+        mobNum = scn.nextLong();
+    }
+    
+    String checkCommonChar(mobUser user) {
+        int minLength = Math.min(user.name.length(), this.name.length());
+        String commonChar = "";
+        
+        for (int i = 0; i < minLength; i++) {
+            char char1 = user.name.charAt(i);
+            char char2 = this.name.charAt(i);
+            
+            // Compare lowercase characters
+            if (Character.toLowerCase(char1) == Character.toLowerCase(char2)) {
+                commonChar=commonChar+Character.toLowerCase(char1); // Store in lowercase
+            } else {
+                break;
+            }
+        }
+        
+        return commonChar.toString();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        mobUser user1 = new mobUser();
+        mobUser user2 = new mobUser();
+        user1.input();
+        user2.input();
+        
+        String commonChar = user1.checkCommonChar(user2);
+        if (!commonChar.isEmpty()) {
+            System.out.println("Common Characters in Names (in lowercase): " + commonChar);
+        } else {
+            System.out.println("No common characters found in Names.");
+        }
+    }
+}
