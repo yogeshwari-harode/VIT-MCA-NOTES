@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <string.h>
+
+void push(char);
+void pop();
+int top = -1;
+char e[20], stack[20];
+
+int main() {
+    printf("Enter expression: ");
+    fgets(e, sizeof(e), stdin);
+    e[strcspn(e, "\n")] = '\0'; // Remove the newline character, if present
+
+    for (int i = 0; e[i] != '\0'; i++) {
+        if (e[i] == '(' || e[i] == '{' || e[i] == '[')
+            push(e[i]);
+        else if (e[i] == ')') {
+            if (stack[top] == '(')
+                pop();
+            else {
+                printf("Unbalanced\n");
+                return 0; // Exit the program
+            }
+        } else if (e[i] == '}') {
+            if (stack[top] == '{')
+                pop();
+            else {
+                printf("Unbalanced\n");
+                return 0; // Exit the program
+            }
+        } else if (e[i] == ']') {
+            if (stack[top] == '[')
+                pop();
+            else {
+                printf("Unbalanced\n");
+                return 0; // Exit the program
+            }
+        }
+    }
+
+    if (top == -1)
+        printf("Expression is balanced\n");
+    else
+        printf("Unbalanced\n");
+
+    return 0;
+}
+
+void push(char c) {
+    top = top + 1;
+    stack[top] = c;
+}
+
+void pop() {
+    top = top - 1;
+}
