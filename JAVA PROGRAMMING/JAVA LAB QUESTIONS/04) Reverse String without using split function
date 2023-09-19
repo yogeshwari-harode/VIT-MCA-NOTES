@@ -1,0 +1,37 @@
+import java.util.Scanner;
+public class Main{
+    
+    
+    public static String reverseWord(String str){
+            String ans="";
+            for(int i=str.length()-1;i>=0;i--){
+                ans=ans+str.charAt(i);
+            }
+            return ans;
+    }
+        
+        public static String reverseEachWord(String str){
+            String ans="";
+            String word="";
+            
+            for(int i=0;i<str.length();i++){
+                if(str.charAt(i)==' '){
+                    ans=ans+reverseWord(word)+" ";
+                    word=" ";
+                    continue;
+                }
+                word=word+str.charAt(i);
+            }
+            ans=ans+reverseWord(word);
+            return ans;
+        }
+    
+    
+    public static void main(String[]args){
+      
+        Scanner scn= new Scanner(System.in);
+        String str;
+        str=scn.nextLine();
+        System.out.printf(reverseEachWord(str));
+    }
+}
