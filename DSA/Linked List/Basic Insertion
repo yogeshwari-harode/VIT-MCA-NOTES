@@ -29,7 +29,7 @@ int main()
     scanf("%d",&choice);
  }
  temp=head;
- while(temp->next!=NULL){
+ while(temp!=NULL){
      printf("%d\n",temp->data);
      temp=temp->next;
  }
