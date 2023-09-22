@@ -9,7 +9,7 @@ struct node
 
 int main()
 {
-    struct node * head,* new_node,*next,*temp;
+    struct node * head,* new_node,*temp;
     head=NULL;
     int choice=1;
  while(choice)
