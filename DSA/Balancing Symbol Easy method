@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+int main() {
+    char Stack[100];  // Stack to store opening symbols
+    int Top = -1;      // Top index of the symbol stack
+    char currentChar;
+      // Indicates if a quote is open or not
+
+    printf("Enter your input:\n");
+
+    while ((currentChar = getchar()) != '@') {
+        
+        // Processing symbols
+        
+            if (currentChar == '(' || currentChar == '[' || currentChar == '{') {
+                Stack[++Top] = currentChar;  // Pushing opening symbols onto the stack
+            } 
+            else if (currentChar == ')' || currentChar == ']' || currentChar == '}') 
+            {
+                // Matching closing symbols with the corresponding opening symbols
+                if (Top < 0 || (currentChar == ')' && Stack[Top--] != '(') ||
+                    (currentChar == ']' && Stack[Top--] != '[') ||
+                    (currentChar == '}' && Stack[Top--] != '{')) 
+                    {
+                        printf("Unbalanced symbols in the program\n");
+                        return 0;
+                    }
+            }
+        
+    }
+
+    // Final check and output
+    if (Top == -1 ) {
+        printf("Program has balanced symbols\n");
+    } else {
+        printf("Program has unbalanced symbols\n");
+    }
+
+    return 0;
+}
